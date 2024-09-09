@@ -11,17 +11,15 @@ function Work() {
       try {
         const querySnapshot = await getDocs(collection(db, 'images'));
         
-        // Check if there are any documents in the snapshot
         if (querySnapshot.empty) {
           console.error('No documents found in the "images" collection.');
           return;
         }
 
         const imagesArray = querySnapshot.docs.map(doc => {
-          const data = doc.data();
+          const data = { id: doc.id, ...doc.data() }; // Use doc.id as unique key
           console.log('Fetched data:', data);  // Debugging log
 
-          // Ensure each document has the required fields
           if (!data.url || !data.link) {
             console.error('Document is missing "url" or "link" field:', data);
           }
@@ -51,20 +49,22 @@ function Work() {
         A selection of my range of work
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {displayedImages.map((imageData, i) => (
-          <a
-            href={imageData.link}
-            className="overflow-hidden bg-red-500"
-            key={i}
-            target="_blank" // Opens link in a new tab
-            rel="noopener noreferrer"
-          >
-            <img
-              src={imageData.url}
-              alt={`Portfolio image ${i + 1}`}
-              className="transition-transform duration-500 transform opacity-100 hover:scale-110"
-            />
-          </a>
+        {displayedImages.map((imageData) => (
+          imageData.url && imageData.link ? (
+            <a
+              href={imageData.link}
+              className="overflow-hidden bg-red-500"
+              key={imageData.id} // Use the unique ID from Firestore
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={imageData.url}
+                alt={`Portfolio image`}
+                className="transition-transform duration-500 transform opacity-100 hover:scale-110"
+              />
+            </a>
+          ) : null
         ))}
       </div>
       <div className="mt-8">
