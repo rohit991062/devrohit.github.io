@@ -9,7 +9,7 @@ function Services() {
           <div className="max-w-md px-8 py-6 mx-auto mb-8 transition-transform transform bg-gray-700 rounded-lg shadow-lg md:mb-0 md:hover:scale-105">
             <h3 className="mb-4 text-xl font-semibold md:text-2xl">Design Using Workflow</h3>
             <p className="text-sm text-gray-300 md:text-base">
-              I design user-focused websites with a blend of aesthetic appeal and functionality, using Figma to create intuitive and engaging interfaces.
+              I design user-focused websites with a blend of aesthetic appeal and functionality, using Workflow to create intuitive and engaging interfaces.
             </p>
           </div>
           <div className="max-w-md px-8 py-6 mx-auto mb-8 transition-transform transform bg-gray-700 rounded-lg shadow-lg md:mb-0 md:hover:scale-105">
